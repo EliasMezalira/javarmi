@@ -1,24 +1,33 @@
 package br.parts.Service;
 
-import br.parts.Model.Part;
+import br.parts.Model.PartInterface;
+import br.parts.Repository.PartRepository;
+import br.parts.Repository.PartRepositoryImpl;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PartServiceImpl implements PartService{
+public class PartServiceImpl implements PartService, Serializable {
+    private PartRepository partRepository;
 
-
-    @Override
-    public void insertPart(Part part) {
-
+    public PartServiceImpl() {
+        this.partRepository = new PartRepositoryImpl();
     }
 
     @Override
-    public Part selectPart(long partId) {
-        return null;
+    public void insertPart(PartInterface part) {
+        if(part != null){
+            partRepository.insertPart(part);
+        }
     }
 
     @Override
-    public List<Part> selectParts() {
-        return null;
+    public PartInterface selectPart(long partId) {
+        return partRepository.selectPart(partId);
+    }
+
+    @Override
+    public List<PartInterface> selectParts() {
+        return partRepository.selectParts();
     }
 }

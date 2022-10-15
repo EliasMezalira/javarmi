@@ -1,22 +1,31 @@
 package br.parts.DAO;
 
-import br.parts.Model.Part;
+import br.parts.Model.PartInterface;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class PartDaoImpl implements PartDao{
-    @Override
-    public void insertPart(Part part) {
+public class PartDaoImpl implements PartDao, Serializable {
 
+    private List<PartInterface> partRepository;
+
+    public PartDaoImpl(){
+        partRepository = new ArrayList<>();
     }
 
     @Override
-    public Part selectPart(long partId) {
-        return null;
+    public void insertPart(PartInterface part) {
+        partRepository.add(part);
     }
 
     @Override
-    public List<Part> selectParts() {
-        return null;
+    public PartInterface selectPart(long partId) {
+        return partRepository.stream().filter(part -> part.getId() == partId).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<PartInterface> selectParts() {
+        return partRepository;
     }
 }

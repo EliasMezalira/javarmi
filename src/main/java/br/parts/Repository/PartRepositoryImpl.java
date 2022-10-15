@@ -2,30 +2,31 @@ package br.parts.Repository;
 
 import br.parts.DAO.PartDao;
 import br.parts.DAO.PartDaoImpl;
-import br.parts.Model.Part;
+import br.parts.Model.PartInterface;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PartRepositoryImpl implements PartRepository{
+public class PartRepositoryImpl implements PartRepository, Serializable {
 
-    PartDao partDao = null;
+    private PartDao partDao = null;
 
-    public PartRepositoryImpl(PartDao partDao) {
-        this.partDao = partDao;
+    public PartRepositoryImpl() {
+        this.partDao = new PartDaoImpl();
     }
 
     @Override
-    public void insertPart(Part part) {
+    public void insertPart(PartInterface part) {
         partDao.insertPart(part);
     }
 
     @Override
-    public Part selectPart(long partId) {
-        return null;
+    public PartInterface selectPart(long partId) {
+        return partDao.selectPart(partId);
     }
 
     @Override
-    public List<Part> selectParts() {
-        return null;
+    public List<PartInterface> selectParts() {
+        return partDao.selectParts();
     }
 }
