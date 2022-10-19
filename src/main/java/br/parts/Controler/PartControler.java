@@ -3,7 +3,6 @@ package br.parts.Controler;
 import br.parts.Model.PartInterface;
 import br.parts.Service.PartService;
 import br.parts.Service.PartServiceImpl;
-import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;

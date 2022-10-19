@@ -11,4 +11,12 @@ public class Subcomponent {
     public void setQtd(int qtd) {
         this.qtd = qtd;
     }
+
+    public PartInterface getSubPart() {
+        return subPart;
+    }
+
+    public void setSubPart(PartInterface subPart) {
+        this.subPart = subPart;
+    }
 }
